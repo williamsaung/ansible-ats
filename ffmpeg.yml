@@ -1,0 +1,14 @@
+---
+ - hosts: ats
+   remote_user: williams
+   become: yes
+   become_method: sudo
+   connection: ssh
+   tasks:
+     - name: add repo
+       apt_repository: repo='ppa:mc3man/trusty-media' state=present update_cache=yes
+     - name: install ffmpeg
+       apt:
+         name: ffmpeg
+         state: present
+

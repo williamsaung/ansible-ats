@@ -1,0 +1,15 @@
+---
+ - hosts: ats
+   remote_user: williams
+   become: yes
+   become_method: sudo
+   connection: ssh
+   tasks:
+     - name: copy passenger config file
+       copy: src=passenger.conf dest=/etc/apache2/mods-available
+     - name: a2ensite passenger
+       command: a2enmod passenger
+     - name: Start service httpd, if not running
+       service:
+         name: apache2
+         state: restarted

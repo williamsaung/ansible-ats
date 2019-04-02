@@ -1,0 +1,13 @@
+---
+- hosts: ats
+  remote_user: williams
+  become: yes
+  become_method: sudo
+  connection: ssh
+  tasks:
+    #- name: install git
+     # command: sudo apt-get install git
+   # - name: git clone
+    #  command: git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+     - name: install nodejs
+       command: sudo apt-get install -y nodejs

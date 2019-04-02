@@ -1,0 +1,8 @@
+---
+ - hosts: ats
+   remote_user: williams
+   become: yes
+   become_method: sudo
+   connection: ssh
+   roles:
+   - apache

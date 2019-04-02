@@ -1,0 +1,14 @@
+---
+ - hosts: ats
+   remote_user: williams
+   become: yes
+   become_method: sudo
+   connection: ssh
+   tasks:
+     - mysql_user:
+         name: ATS
+         password: ATS
+         state: present
+         priv: 'ats-app-2.*:ALL/*.*:USAGE'
+
+

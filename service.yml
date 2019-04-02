@@ -1,0 +1,11 @@
+---
+ - hosts: webservers
+   remote_user: williams
+   become: yes
+   become_method: sudo
+   connection: ssh
+   tasks:
+     - name: Start service httpd, if not running
+       service:
+         name: apache2
+         state: restarted

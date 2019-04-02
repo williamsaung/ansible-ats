@@ -1,0 +1,18 @@
+---
+ - hosts: ats
+   remote_user: williams
+   become: yes
+   become_method: sudo
+   connection: ssh
+   tasks:
+     - name: copy ssl config file
+       copy: src=ats-ssl.conf dest=/etc/apache2/sites-available
+     - name: a2ensite passenger
+       command: a2ensite ats-ssl
+     - name: a2enmod ssl
+       command: a2enmod ssl
+     - name: Start service httpd, if not running
+       service:
+         name: apache2
+         state: restarted
+
